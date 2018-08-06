@@ -1,0 +1,17 @@
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PenAndPaperDay.Data.Entites
+{
+    [Table("User")]
+    public class User : Entity
+    {
+        public string Code { get; set; }
+
+        public string Email { get; set; }
+
+        public string Games { get; set; }
+
+        public ICollection<UserOnOfferedGame> UserOnOfferedGame { get; } = new List<UserOnOfferedGame>();
+    }
+}
