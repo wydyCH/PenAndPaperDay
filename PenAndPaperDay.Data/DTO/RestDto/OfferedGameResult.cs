@@ -19,13 +19,22 @@ namespace PenAndPaperDay.Data.DTO.RestDto
         public string Duration { get; set; }
 
         [DataMember]
-        public string Size { get; set; }
+        public string MinSize { get; set; }
+
+        [DataMember]
+        public string MaxSize { get; set; }
 
         [DataMember]
         public string LanguageCode { get; set; }
 
         [DataMember]
+        public string Title { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
+
+        [DataMember]
+        public string GameType { get; set; }
 
         [DataMember]
         public string GameMasterCode { get; set; }

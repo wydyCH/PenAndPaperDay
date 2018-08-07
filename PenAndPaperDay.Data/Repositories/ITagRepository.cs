@@ -6,6 +6,6 @@ namespace PenAndPaperDay.Data.Repositories
 {
     public interface ITagRepository : IBaseRepository<Tag, TagDto>
     {
-        IList<TagDto> GetTags(int pos, int count, bool asc);
+        IList<TagDto> GetTags();
     }
 }

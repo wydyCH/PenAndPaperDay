@@ -16,16 +16,25 @@ namespace PenAndPaperDay.Data.DTO
         public int Duration { get; set; }
 
         [DataMember]
-        public int Size { get; set; }
+        public int MinSize { get; set; }
+
+        [DataMember]
+        public int MaxSize { get; set; }
+
+        [DataMember]
+        public string Title { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
+
+        [DataMember]
+        public string GameType { get; set; }
 
         [DataMember]
         public int LanguageId { get; set; }
 
         [DataMember]
         public LanguageDto Language { get; set; }
-
-        [DataMember]
-        public string Description { get; set; }
 
         [DataMember]
         public IList<UserOnOfferedGameDto> UserOnOfferedGame { get; set; }

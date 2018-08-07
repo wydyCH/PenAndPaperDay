@@ -10,14 +10,20 @@ namespace PenAndPaperDay.Data.Entites
     {
         public int Duration { get; set; }
 
-        public int Size { get; set; }
+        public int MinSize { get; set; }
 
-        public int LanguageId { get; set; }
+        public int MaxSize { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public string GameType { get; set; }
 
         [ForeignKey("LanguageId")]
         public Language Language { get; set; }
 
-        public string Description { get; set; }
+        public int LanguageId { get; set; }
 
         public ICollection<UserOnOfferedGame> UserOnOfferedGame { get; set; } = new List<UserOnOfferedGame>();
 

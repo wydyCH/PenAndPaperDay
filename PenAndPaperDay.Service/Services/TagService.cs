@@ -41,13 +41,10 @@ namespace PenAndPaperDay.Service.Services
             return TagParse(tagDto);
         }
 
-        public IList<TagResult> GetTags(int pos, int count, bool asc, string language)
+        public IList<TagResult> GetTags()
         {
-            if(count <= 0)
-                throw new ArgumentException("invalid count", nameof(count));
-
             //ignore language first version
-            IList<TagDto> tags = _tagRepository.GetTags(pos, count, asc);
+            IList<TagDto> tags = _tagRepository.GetTags();
 
             return tags.Select(tag => TagParse(tag)).ToList();
         }

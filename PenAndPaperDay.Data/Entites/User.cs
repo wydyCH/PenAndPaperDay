@@ -10,7 +10,9 @@ namespace PenAndPaperDay.Data.Entites
 
         public string Email { get; set; }
 
-        public string Games { get; set; }
+        public string Name { get; set; }
+
+        public string Notes { get; set; }
 
         public ICollection<UserOnOfferedGame> UserOnOfferedGame { get; } = new List<UserOnOfferedGame>();
     }

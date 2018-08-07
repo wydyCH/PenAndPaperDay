@@ -42,6 +42,8 @@ namespace PenAndPaperDay.Web
             services.AddScoped<IOfferedGameRepository, OfferedGameRepository>();
             services.AddScoped<IUserOnOfferedGameRepository, UserOnOfferedGameRepository>();
             services.AddScoped<IOfferedGameOnTagRepository, OfferedGameOnTagRepository>();
+            services.AddScoped<INewsletterRepository, NewsletterRepository>();
+            services.AddScoped<IUserOnTimeRangeRepository, UserOnTimeRangeRepository>();
 
             services.AddAutoMapper();
 
@@ -54,6 +56,9 @@ namespace PenAndPaperDay.Web
             services.AddScoped<IErrorLogEntryService, ErrorLogEntryService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOfferedGameService, OfferedGameService>();
+            services.AddScoped<INewsletterService, NewsletterService>();
+            services.AddScoped<IUserOnTimeRangeService, UserOnTimeRangeService>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

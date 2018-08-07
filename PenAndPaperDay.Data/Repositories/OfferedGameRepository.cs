@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PenAndPaperDay.Data.DTO;
 using PenAndPaperDay.Data.Entites;
+using PenAndPaperDay.Data.Enum;
 
 namespace PenAndPaperDay.Data.Repositories
 {
@@ -19,7 +20,7 @@ namespace PenAndPaperDay.Data.Repositories
         public IList<OfferedGameDto> GetAll(string code)
         {
             var games = _dbContext.UserOnOfferedGames
-                .Where(i => i.User.Code == code).Select(s => s.OfferdGame);
+                .Where(i => i.User.Code == code && i.UserType == UserType.GameMaster).Select(s => s.OfferdGame);
 
             if (games.Any())
             {

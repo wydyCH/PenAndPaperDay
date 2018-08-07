@@ -19,11 +19,11 @@ namespace PenAndPaperDay.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int pos, int count, bool asc, string language)
+        public IActionResult Get()
         {
             try
             {
-                object result = _tagService.GetTags(pos, count, asc, language);
+                object result = _tagService.GetTags();
                 return Ok(result);
             }
             catch (Exception exc)

@@ -14,14 +14,12 @@ namespace PenAndPaperDay.Service.Services
         private readonly IOfferedGameRepository _offeredGameRepository;
         private readonly IUserOnOfferedGameRepository _userOnOfferedGameRepository;
         private readonly IOfferedGameOnTagRepository _offeredGameOnTagRepository;
+        private readonly IUserRepository _userRepository;
         private readonly ILanguageService _languageService;
         private readonly IUserService _userService;
         //TODO in config
         private readonly string _tagPrefix = "opt-";
 
-        //TODO bad practice, try to refactor
-        private readonly IUserRepository _userRepository;
-        
         public OfferedGameService(IOfferedGameRepository offeredGameRepository, IUserOnOfferedGameRepository userOnOfferedGameRepository, IUserService userService, ILanguageService languageService, IUserRepository userRepository, IOfferedGameOnTagRepository offeredGameOnTagRepository)
         {
             _offeredGameRepository = offeredGameRepository;
@@ -61,19 +59,31 @@ namespace PenAndPaperDay.Service.Services
                 throw new ArgumentException("Empty GameMasterCode", nameof(offeredGameResult.OfferedGameForm.GameMasterCode));
 
             if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.Duration))
-                throw new ArgumentException("Empty Duration", nameof(offeredGameResult.OfferedGameForm.Duration));
+                offeredGameResult.OfferedGameForm.Duration = "0";
 
-            if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.Size))
-                throw new ArgumentException("Empty Size", nameof(offeredGameResult.OfferedGameForm.Size));
+            if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.MinSize))
+                offeredGameResult.OfferedGameForm.MinSize = "0";
+
+            if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.MaxSize))
+                offeredGameResult.OfferedGameForm.MaxSize = "0";
 
             if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.LanguageCode))
-                throw new ArgumentException("Empty LanguageCode", nameof(offeredGameResult.OfferedGameForm.LanguageCode));
+                offeredGameResult.OfferedGameForm.LanguageCode = "de";
+
+            if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.Title))
+                throw new ArgumentException("Empty Title", nameof(offeredGameResult.OfferedGameForm.Title));
+
+            if (string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.GameType))
+                throw new ArgumentException("Empty GameType", nameof(offeredGameResult.OfferedGameForm.GameType));
 
             if (!int.TryParse(offeredGameResult.OfferedGameForm.Duration, out int duration))
                 throw new ArgumentException("Invalid duration, use integer", offeredGameResult.OfferedGameForm.Duration);
 
-            if (!int.TryParse(offeredGameResult.OfferedGameForm.Size, out int size))
-                throw new ArgumentException("Invalid Size, use integer", offeredGameResult.OfferedGameForm.Size);            
+            if (!int.TryParse(offeredGameResult.OfferedGameForm.MinSize, out int minsize))
+                throw new ArgumentException("Invalid MinSize, use integer", offeredGameResult.OfferedGameForm.MinSize);
+
+            if (!int.TryParse(offeredGameResult.OfferedGameForm.MinSize, out int maxSize))
+                throw new ArgumentException("Invalid MaxSize, use integer", offeredGameResult.OfferedGameForm.MinSize);
 
             var offeredGameDto = OfferedGameParse(offeredGameResult);
 
@@ -140,7 +150,11 @@ namespace PenAndPaperDay.Service.Services
                 {
                     Id = offeredGameDto.Id.ToString(),
                     Description = offeredGameDto.Description,
-                    Duration = offeredGameDto.Duration.ToString()
+                    Duration = offeredGameDto.Duration.ToString(),
+                    MinSize = offeredGameDto.MinSize.ToString(),
+                    MaxSize = offeredGameDto.MinSize.ToString(),
+                    Title = offeredGameDto.Title,
+                    GameType = offeredGameDto.GameType
                 }
             };
 
@@ -156,8 +170,6 @@ namespace PenAndPaperDay.Service.Services
             
             if(offeredGameDto.Language != null)
                 result.OfferedGameForm.LanguageCode = offeredGameDto.Language.TwoDigitSeoCode;
-
-            result.OfferedGameForm.Size = offeredGameDto.Size.ToString();
 
             if (offeredGameDto.OfferedGameOnTag.Any())
             {
@@ -178,7 +190,10 @@ namespace PenAndPaperDay.Service.Services
                 Description = offeredGameResult.OfferedGameForm.Description,
                 Duration = int.Parse(offeredGameResult.OfferedGameForm.Duration),
                 LanguageId = _languageService.GetLanguageByCode(offeredGameResult.OfferedGameForm.LanguageCode).Id,
-                Size = int.Parse(offeredGameResult.OfferedGameForm.Size)
+                MinSize = int.Parse(offeredGameResult.OfferedGameForm.MinSize),
+                MaxSize = int.Parse(offeredGameResult.OfferedGameForm.MaxSize),
+                Title = offeredGameResult.OfferedGameForm.Title,
+                GameType = offeredGameResult.OfferedGameForm.GameType
             };
 
             if (!string.IsNullOrEmpty(offeredGameResult.OfferedGameForm.Id))

@@ -24,5 +24,9 @@ namespace PenAndPaperDay.Data
         public DbSet<UserOnOfferedGame> UserOnOfferedGames { get; set; }
 
         public DbSet<OfferedGameOnTag> OfferedGameOnTags { get; set; }
+
+        public DbSet<Newsletter> Newsletters { get; set; }
+
+        public DbSet<UserOnTimeRange> UserOnTimeRanges { get; set; }
     }
 }

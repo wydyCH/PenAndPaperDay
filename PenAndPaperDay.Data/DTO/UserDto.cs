@@ -13,7 +13,10 @@ namespace PenAndPaperDay.Data.DTO
         public string Email { get; set; }
 
         [DataMember]
-        public string Games { get; set; }
+        public string Name { get; set; }
+
+        [DataMember]
+        public string Notes { get; set; }
 
         [DataMember]
         public IList<UserOnOfferedGameDto> UserOnOfferedGame { get; set; }

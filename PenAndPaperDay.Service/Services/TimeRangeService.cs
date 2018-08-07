@@ -11,10 +11,12 @@ namespace PenAndPaperDay.Service.Services
     public class TimeRangeService : ITimeRangeService
     {
         private readonly ITimeRangeRepository _timeRangeRepository;
+        private readonly IUserOnTimeRangeRepository _userOnTimeRangeRepository;
 
-        public TimeRangeService(ITimeRangeRepository timeRangeRepository)
+        public TimeRangeService(ITimeRangeRepository timeRangeRepository, IUserOnTimeRangeRepository userOnTimeRangeRepository)
         {
             _timeRangeRepository = timeRangeRepository;
+            _userOnTimeRangeRepository = userOnTimeRangeRepository;
         }
 
         public TimeRangeResultDto SaveTimeRange(TimeRangeResultDto timeRangeResultDto)

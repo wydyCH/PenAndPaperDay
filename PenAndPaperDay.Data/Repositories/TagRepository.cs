@@ -13,12 +13,9 @@ namespace PenAndPaperDay.Data.Repositories
         {
         }
 
-        public IList<TagDto> GetTags(int pos, int count, bool asc)
+        public IList<TagDto> GetTags()
         {
             var tags = _dbContext.Tags
-                .OrderByWithDirection(tag => tag.Name, !asc)
-                .Skip(pos)
-                .Take(count)
                 .ToList();
 
             return _mapper.Map<IList<Tag>, IList<TagDto>>(tags);

@@ -1,14 +1,11 @@
 ﻿IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_SCHEMA = 'dbo' 
-                 AND  TABLE_NAME = 'User'))
+                 AND  TABLE_NAME = 'Newsletter'))
 BEGIN
-	CREATE TABLE [dbo].[User](
+	CREATE TABLE [dbo].[Newsletter](
 		[Id] [INT] IDENTITY(1,1) NOT NULL,
-		[Code] nvarchar(max) NOT NULL,
 		[Email] nvarchar(max) NOT NULL,
-		[Name] nvarchar(max) NOT NULL,
-		[Notes] nvarchar(max) NULL,
 		PRIMARY KEY (Id)
 	)
 END

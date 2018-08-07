@@ -41,7 +41,7 @@ namespace PenAndPaperDay.Service.Services
             return UserParse(userDto);
         }
 
-        public IList<UserResult> GetUsers(int pos, int count, bool asc, string language)
+        public IList<UserResult> GetUsers(int pos, int count, bool asc)
         {
             if (count <= 0)
                 throw new ArgumentException("invalid count", nameof(count));
@@ -57,7 +57,10 @@ namespace PenAndPaperDay.Service.Services
                 throw new ArgumentNullException("No UserForm send");
 
             if (string.IsNullOrEmpty(userResult.UserForm.Email))
-                throw new ArgumentException("Email Name", nameof(userResult.UserForm.Email));
+                throw new ArgumentException("Email empty", nameof(userResult.UserForm.Email));
+
+            if (string.IsNullOrEmpty(userResult.UserForm.Name))
+                throw new ArgumentException("Name empty", nameof(userResult.UserForm.Name));
 
             var userDto = UserParse(userResult);
 
@@ -77,22 +80,29 @@ namespace PenAndPaperDay.Service.Services
 
         private UserResult UserParse(UserDto userDto)
         {
-            UserResult userResult = new UserResult();
-            userResult.UserForm = new UserForm();
-            userResult.UserForm.Code = userDto.Code;
-            userResult.UserForm.Email = userDto.Email;
-            userResult.UserForm.Games = userDto.Games;
+            UserResult userResult = new UserResult
+            {
+                UserForm = new UserForm
+                {
+                    Code = userDto.Code,
+                    Email = userDto.Email,
+                    Name = userDto.Name,
+                    Notes = userDto.Notes
+                }
+            };
 
             return userResult;
         }
 
         private UserDto UserParse(UserResult userResult)
         {
-            UserDto userDto = new UserDto();
-
-            userDto.Code = userResult.UserForm.Code;
-            userDto.Email = userResult.UserForm.Email;
-            userDto.Games = userResult.UserForm.Games;
+            UserDto userDto = new UserDto
+            {
+                Code = userResult.UserForm.Code,
+                Email = userResult.UserForm.Email,
+                Name = userResult.UserForm.Name,
+                Notes = userResult.UserForm.Notes
+            };
 
             return userDto;
         }

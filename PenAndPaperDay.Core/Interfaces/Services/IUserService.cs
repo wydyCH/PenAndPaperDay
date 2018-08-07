@@ -12,7 +12,7 @@ namespace PenAndPaperDay.Core.Interfaces.Services
         /// Gets a list of all objects
         /// </summary>
         /// <returns>empty list or all objects</returns>
-        IList<UserResult> GetUsers(int pos, int count, bool asc, string language);
+        IList<UserResult> GetUsers(int pos, int count, bool asc);
 
         /// <summary>
         /// Update or Insert an object

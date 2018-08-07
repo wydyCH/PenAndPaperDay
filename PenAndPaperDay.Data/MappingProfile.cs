@@ -17,10 +17,8 @@ namespace PenAndPaperDay.Data
             CreateMap<UserOnOfferedGame, UserOnOfferedGameDto>();
             CreateMap<OfferedGameOnTag, OfferedGameOnTagDto>();
             CreateMap<OfferedGame, OfferedGameDto>();
-                //.ForMember(a => a.UserOnOfferedGame,
-                //    opt => opt.UseDestinationValue())
-                //.ForMember(a => a.OfferedGameOnTag,
-                //    opt => opt.UseDestinationValue());
+            CreateMap<Newsletter, NewsletterDto>();
+            CreateMap<UserOnTimeRange, UserOnTimeRangeDto>();
 
             CreateMap<TimeRangeDto, TimeRange>();
             CreateMap<TagDto, Tag>();
@@ -30,10 +28,8 @@ namespace PenAndPaperDay.Data
             CreateMap<UserOnOfferedGameDto, UserOnOfferedGame>();
             CreateMap<OfferedGameOnTagDto, OfferedGameOnTag>();
             CreateMap<OfferedGameDto, OfferedGame>();
-                //.ForMember(a => a.UserOnOfferedGame,
-                //    opt => opt.UseDestinationValue())
-                //.ForMember(a => a.OfferedGameOnTag,
-                //    opt => opt.UseDestinationValue());
+            CreateMap<NewsletterDto, Newsletter>();
+            CreateMap<UserOnTimeRangeDto, UserOnTimeRange>();
         }
     }
 }
